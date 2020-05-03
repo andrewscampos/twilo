@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -23,7 +24,7 @@ public class ImportContact1Application {
 	
 	ArrayList<Object> list = new ArrayList<>();
 	
-	ArrayList<Object> status = new ArrayList<>();
+	ArrayList<HashMap<String, String>> status = new ArrayList<>();
 	
 	@RequestMapping(value = "/reciver", method = RequestMethod.POST)
 	public void reciver(@RequestBody Object obs) {
@@ -38,12 +39,12 @@ public class ImportContact1Application {
 	}
 	
 	@RequestMapping(value = "/status",  consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,  method = RequestMethod.POST)
-	public void status(Object obs) {
+	public void status(HashMap<String, String> obs) {
 		status.add(obs);
 	}
 
 	@RequestMapping(value = "/status", method = RequestMethod.GET)
-	public ResponseEntity<ArrayList<Object>> getStatus() {
-		return  new ResponseEntity<ArrayList<Object>>(status, HttpStatus.CREATED);
+	public ResponseEntity<ArrayList<HashMap<String, String>>> getStatus() {
+		return  new ResponseEntity<ArrayList<HashMap<String, String>>>(status, HttpStatus.CREATED);
 	}
 }
