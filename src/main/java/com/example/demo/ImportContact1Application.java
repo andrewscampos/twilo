@@ -36,7 +36,7 @@ public class ImportContact1Application {
 	}
 	
 	@RequestMapping(value = "/status",  consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,  method = RequestMethod.POST)
-	public void status(@RequestBody Object obs) {
+	public void status(Object obs) {
 		status.add(obs);
 	}
 
