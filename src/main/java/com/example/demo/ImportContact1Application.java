@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,7 +35,7 @@ public class ImportContact1Application {
 		return list;
 	}
 	
-	@RequestMapping(value = "/status", method = RequestMethod.POST)
+	@RequestMapping(value = "/status",  consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,  method = RequestMethod.POST)
 	public void status(@RequestBody Object obs) {
 		status.add(obs);
 	}
