@@ -40,7 +40,6 @@ public class ImportContact1Application {
 		status.add(obs);
 	}
 
-	@ResponseBody
 	@RequestMapping(value = "/status", method = RequestMethod.GET)
 	public ArrayList<Object> getStatus() {
 		return status;
