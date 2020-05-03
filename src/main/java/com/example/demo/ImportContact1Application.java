@@ -1,7 +1,7 @@
 package com.example.demo;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,29 +22,29 @@ public class ImportContact1Application {
 		SpringApplication.run(ImportContact1Application.class, args);
 	}
 	
-	ArrayList<Object> list = new ArrayList<>();
+	ArrayList<String> list = new ArrayList<>();
 	
-	ArrayList<HashMap<String, String>> status = new ArrayList<>();
+	ArrayList<String> status = new ArrayList<>();
 	
-	@RequestMapping(value = "/reciver", method = RequestMethod.POST)
-	public void reciver(@RequestBody Object obs) {
+	@RequestMapping(value = "/reciver", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, method = RequestMethod.POST)
+	public void reciver(@RequestBody String obs) {
 		list.add(obs);
 	}
 	
 	
 	@RequestMapping(value = "/reciver", method = RequestMethod.GET)
 	@ResponseBody
-	public ArrayList<Object> getReciver() {
+	public ArrayList<String> getReciver() {
 		return list;
 	}
 	
 	@RequestMapping(value = "/status",  consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,  method = RequestMethod.POST)
-	public void status(HashMap<String, String> obs) {
+	public void status(@RequestBody String obs) {
 		status.add(obs);
 	}
 
 	@RequestMapping(value = "/status", method = RequestMethod.GET)
-	public ResponseEntity<ArrayList<HashMap<String, String>>> getStatus() {
-		return  new ResponseEntity<ArrayList<HashMap<String, String>>>(status, HttpStatus.CREATED);
+	public ResponseEntity<List<String>> getStatus() {
+		return  new ResponseEntity<List<String>>(status, HttpStatus.CREATED);
 	}
 }
